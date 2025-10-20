@@ -3,6 +3,7 @@ import "dotenv/config";
 
 import sequelize from "./database.js";
 import Movie from "./entites/movie.js";
+import movieRouter from "./routes/movie.router.js";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use((req, res, next) => {
 	console.log(time, req.method, req.path);
 	next();
 });
+
+app.use("/movies", movieRouter);
 
 const startServer = async () => {
 	try {
