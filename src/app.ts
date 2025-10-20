@@ -2,6 +2,7 @@ import express from "express";
 import "dotenv/config";
 
 import sequelize from "./database.js";
+import Movie from "./entites/movie.js";
 
 const app = express();
 
@@ -23,6 +24,9 @@ const startServer = async () => {
 	try {
 		await sequelize.authenticate();
 		console.log("DB connected: ✅");
+
+		await Movie.sync();
+
 		app.listen(PORT, () => {
 			console.log(`server connected: ✅`);
 		});
