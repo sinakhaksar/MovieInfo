@@ -24,6 +24,13 @@ app.use((req, res, next) => {
 
 app.use("/movies", movieRouter);
 
+// Global Error handling for not found Routes
+app.use((req, res) => {
+	res.status(404).json({
+		message: "Route Not Found!",
+	});
+});
+
 app.use(errorHandlerMiddleware);
 
 const startServer = async () => {
