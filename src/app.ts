@@ -7,6 +7,18 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
+app.use((req, res, next) => {
+	const now = new Date();
+	const time =
+		`[${String(now.getHours()).padStart(2, "0")}:` +
+		`${String(now.getMinutes()).padStart(2, "0")}:` +
+		`${String(now.getSeconds()).padStart(2, "0")}:` +
+		`${String(now.getMilliseconds()).padStart(3, "0")}]`;
+
+	console.log(time, req.method, req.path);
+	next();
+});
+
 const startServer = async () => {
 	try {
 		await sequelize.authenticate();
