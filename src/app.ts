@@ -4,6 +4,7 @@ import "dotenv/config";
 import sequelize from "./database.js";
 import Movie from "./entites/movie.js";
 import movieRouter from "./routes/movie.router.js";
+import { errorHandlerMiddleware } from "./middleware/error.middleware.js";
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/movies", movieRouter);
+
+app.use(errorHandlerMiddleware);
 
 const startServer = async () => {
 	try {
