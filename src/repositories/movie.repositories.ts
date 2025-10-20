@@ -5,4 +5,7 @@ export const MovieRepository = {
 		const movie = await Movie.findOne({ where: { title } });
 		return movie;
 	},
+	async createMovie(data: any) {
+		return await Movie.create(data);
+	},
 };
